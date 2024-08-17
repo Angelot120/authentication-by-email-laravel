@@ -40,6 +40,12 @@ class AuthController extends Controller
         // $password = str()->password();
         // $password = str()->random(8);
 
+        $searchAdmin = User::where('is_admin', true);
+
+        if($searchAdmin){
+            return back()->with('error', 'Vous avez déjà un administrateur');
+        }
+
         $data = [
             'name' => $request->name,
             'email' => $request->email,

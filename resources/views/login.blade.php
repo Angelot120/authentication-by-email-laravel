@@ -27,7 +27,7 @@
                 @endif
 
                 @if ($message = Session::get('error'))
-                    <div>{{ $message }}</div><br>
+                    <div class="alert alert-danger">{{ $message }}</div><br>
                 @endif
 
                 <div class="form-floating">

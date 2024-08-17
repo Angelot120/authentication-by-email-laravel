@@ -46,7 +46,7 @@
 
 
 
-        <div class="container">
+        <div class="container shadow-lg p-3 mb-5 bg-body rounded">
 
 
             @if ($message = Session::get('sucess'))
@@ -61,38 +61,41 @@
             <h3>Liste des utilisateurs</h3>
             <br>
 
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>E-mail</th>
-                        <th>Nom complet</th>
-                        <th>Opérations</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach ($users as $user)
+            <div>
+                <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td class="d-flex">
-                                <a href="{{ route('user.update', $user->id) }}" class="btn btn-primary me-2">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </a>
-
-                                <form action="{{ route('user.delete', $user->id) }}" method="post">
-                                    @csrf
-                                    <button onclick="return Confirm('Voulez vous vraiment supprimer cet utilisateur ?')"
-                                        class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </form>
-                            </td>
+                            <th>#</th>
+                            <th>E-mail</th>
+                            <th>Nom complet</th>
+                            <th>Opérations</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+    
+                        @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td class="d-flex">
+                                    <a href="{{ route('user.update', $user->id) }}" class="btn btn-primary me-2">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </a>
+    
+                                    <form action="{{ route('user.delete', $user->id) }}" method="post">
+                                        @csrf
+                                        
+                                        <button onclick="return confirm('Voulez vous vraiment supprimer cet utilisateur ?')"
+                                            class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     @else
